@@ -1,0 +1,7 @@
+{
+  "name": "Where To Learn",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
