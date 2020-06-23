@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -25,18 +25,32 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Search from './pages/Search';
 import Home from './pages/Home';
+import { getCurrentUser } from './Firebase';
+import Profile from './pages/Profile';
+import { useDispatch } from 'react-redux';
+import { setUserState } from './redux/actions';
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+
+  const dispatch = useDispatch();
   
+  useEffect(() => {
+    getCurrentUser().then((user) => {
+      if(user) {
+        dispatch(setUserState(user));
+      }
+    })
+  }, [])
+
+  return (
   <IonApp>
     <IonReactRouter>
-        <IonRouterOutlet>
-          <Route path="/search" component={Search} exact={true} />
-          <Route path="/home" component={Home} />
-          <Route path="/" render={() => <Redirect to="/search" />} exact={true} />
-        </IonRouterOutlet>
+      <Route path="/search" component={Search} />
+      <Route path="/profile" component={Profile} />
+      <Route path="/home" component={Home} />
+      <Route path="/" render={() => <Redirect to="/search" />} exact={true} />
     </IonReactRouter>
-  </IonApp>
-);
+  </IonApp>);
+};
 
 export default App;

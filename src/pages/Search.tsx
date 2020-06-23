@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonList, IonItem, IonLabel, IonThumbnail, IonIcon, IonButtons, IonBackButton } from '@ionic/react';
 import './Search.css';
 import { chevronForward } from 'ionicons/icons';
+import Header from '../components/Header';
+import { RouteComponentProps } from 'react-router';
 
-const Search: React.FC = () => {
+const Search: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
   const techs = [
     {id: 'angular', name: 'Angular', image: 'https://angular.io/assets/images/logos/angular/angular.png'},
@@ -14,14 +16,7 @@ const Search: React.FC = () => {
   
   return (
     <IonPage>
-      <IonHeader>
-        <IonButtons slot="start">
-          <IonBackButton />
-        </IonButtons>
-        <IonToolbar>
-          <IonTitle>Where to learn?</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <Header name="Where to Learn?" history={props.history} showSearch={false} showAdd={false} />
       <IonContent>
         <IonHeader collapse="condense">
           <IonToolbar>

@@ -2,11 +2,12 @@ import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Groups.css';
 import Header from '../components/Header';
+import { RouteComponentProps } from 'react-router';
 
-const Groups: React.FC = () => {
+const Groups: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
     <IonPage>
-      <Header name="Groups" />
+      <Header name="Groups" history={props.history} showSearch={true} showAdd={true} />
       <IonContent>
         <IonHeader collapse="condense">
           <IonToolbar>

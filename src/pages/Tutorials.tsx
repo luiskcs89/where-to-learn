@@ -19,7 +19,7 @@ const Tutorials: React.FC<RouteComponentProps> = (props: RouteComponentProps) =>
 
   return (
     <IonPage>
-      <Header name="Books" />
+      <Header name="Tutorials" history={props.history} showSearch={true} showAdd={true} />
 
       <IonContent>
         <IonHeader collapse="condense">

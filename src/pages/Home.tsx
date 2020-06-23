@@ -7,13 +7,11 @@ import Courses from './Courses';
 import Groups from './Groups';
 import Books from './Books';
 import { laptopOutline, schoolOutline, chatbubblesOutline, libraryOutline } from 'ionicons/icons';
-import { IonReactRouter } from '@ionic/react-router';
 import Detail from './Detail';
 
 const Home: React.FC = () => {
   return (
     <IonPage>
-      <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
             <Route path="/home/:tab(tutorials)/:tech" component={Tutorials} />
@@ -41,7 +39,6 @@ const Home: React.FC = () => {
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
-      </IonReactRouter>
     </IonPage>
   );
 };
