@@ -1,0 +1,9 @@
+.top-profile {
+    text-align: center;
+    margin: 20px;
+}
+
+.top-profile img {
+    width: 50%;
+    border-radius: 100%;
+}

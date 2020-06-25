@@ -14,7 +14,7 @@ interface ContainerProps {
 }
 
 const Header: React.FC<ContainerProps> = ({ name, history, showSearch, showAdd }) => {
-  const [showPopover, setShowPopover] = useState(false);
+  const [state, setShowPopover] = useState({showPopover: false, event: undefined});
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
@@ -45,7 +45,10 @@ const Header: React.FC<ContainerProps> = ({ name, history, showSearch, showAdd }
               </IonButton>
               ) : ''}
               { (showAdd) ? (
-              <IonButton onClick={() => setShowPopover(true)}>
+              <IonButton onClick={(e: any) => {
+                e.persist();
+                setShowPopover({showPopover: true, event: e})
+              }}>
                 <IonIcon slot="end" icon={addOutline} />
               </IonButton>
               ) : ''}
@@ -53,23 +56,22 @@ const Header: React.FC<ContainerProps> = ({ name, history, showSearch, showAdd }
           ) : ''}
         </IonToolbar>
 
-          <IonPopover
-          isOpen={showPopover}
+        <IonPopover
+          event={state.event}
+          isOpen={state.showPopover}
           cssClass='my-custom-class'
-          onDidDismiss={e => setShowPopover(false)}
+          onDidDismiss={e => setShowPopover({showPopover: false, event: undefined})}
         >
           <IonList>
             <IonListHeader>Contribute</IonListHeader>
             <IonItem routerLink="/home">Add Topic</IonItem>
-            <IonItem routerLink="/home">Add Tutorial</IonItem>
-            <IonItem routerLink="/home">Add Course</IonItem>
-            <IonItem routerLink="/home">Add Group</IonItem>
-            <IonItem routerLink="/home">Add Book</IonItem>
-            <IonItem routerLink="/home">Edit</IonItem>
-            <IonItem routerLink="/home">Report</IonItem>
-            <IonItem button lines="none" detail={false} onClick={() => setShowPopover(false)}>Close</IonItem>
+            <IonItem routerLink="/home">Add Resource</IonItem>
+            <IonItem routerLink="/home">Edit This Topic</IonItem>
+            <IonItem routerLink="/home">Report This Topic</IonItem>
+            <IonItem button lines="none" detail={false} onClick={() => setShowPopover({showPopover: false, event: undefined})}>Close</IonItem>
           </IonList>
         </IonPopover>
+
         <IonModal isOpen={showLoginModal}>
           <Login closeModal={() => setShowLoginModal(false)} goToRegister={
             () => {

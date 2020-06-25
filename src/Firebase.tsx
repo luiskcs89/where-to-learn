@@ -10,7 +10,7 @@ const firebaseConfig = {
     appId: "1:54885991990:web:393fdbd8edaf2379c47a97",
     measurementId: "G-XJ5WP5KJSF"
 };
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const db = firebase.firestore();
@@ -45,11 +45,16 @@ export async function register(name: string, email: string, password: string) {
         const user = {
             uid: res.user?.uid,
             name,
-            email
+            email,
+            created: new Date()
         }
         await db.collection('usersData').doc(res.user?.uid).set(user);
         return user;
     } catch(e) {
         return e;
     }
+}
+
+export function logout() {
+    firebase.auth().signOut();
 }

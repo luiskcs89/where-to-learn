@@ -56,7 +56,7 @@ const Detail: React.FC = () => {
           </IonCol>
         </IonRow>
 
-        <IonButton expand="full" fill="outline">Go To Website</IonButton>
+        <IonButton fill="clear" expand="block">Go To Website</IonButton>
 
         <p className="description">{tutorial.description}</p>
 
